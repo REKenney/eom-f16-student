@@ -2,7 +2,7 @@ PFont font;
 import processing.sound.*;
 SoundFile drip;
 boolean newSecond = false;
-int oldS, s, m = 0;
+int oldS = -1, s, m = 0;
 PImage img1, img2, img3; // water
 PImage img60, img61; // other images
 
@@ -10,7 +10,7 @@ void setup() {
   size(1920, 1080);
   //drip = new SoundFile(this, "Water-Dripping-Sound-Effect.mp3");
   //drip.loop();
-  drip = new SoundFile(this, "1-sec-drop.wav");
+  drip = new SoundFile(this, "ClockTick1.mp3");
 
   img1= loadImage ("1.jpg");
   img2= loadImage ("2.jpg");
@@ -30,9 +30,10 @@ void draw() {
   }
 
   if (newSecond == true) {
-    drip.stop(); // stop previous playing, it might be still playing
-    drip.cue(0); // restart at beginner
-    drip.play(); // play new clip
+    println("playing clip");
+    //drip.stop(); // stop previous playing, it might be still playing
+    //drip.cue(0); // restart at beginning
+    //drip.play(); // play new clip
   }
 
 

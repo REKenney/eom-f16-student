@@ -5,12 +5,14 @@ boolean newSecond = false;
 int oldS = -1, s, m = 0;
 PImage img1, img2, img3; // water
 PImage img60, img61; // other images
+boolean drawThePopup = false;
+PImage img62;
 
 void setup() {
   size(1920, 1080);
   //drip = new SoundFile(this, "Water-Dripping-Sound-Effect.mp3");
   //drip.loop();
-  drip = new SoundFile(this, "ClockTick1.mp3");
+  //drip = new SoundFile(this, "ClockTick1.mp3");
 
   img1= loadImage ("1.jpg");
   img2= loadImage ("2.jpg");
@@ -18,6 +20,7 @@ void setup() {
 
   img60= loadImage ("60.jpg"); // background
   img61= loadImage ("question.png"); // question
+  img62=loadImage ("close.png");
 }
 
 
@@ -30,7 +33,7 @@ void draw() {
   }
 
   if (newSecond == true) {
-    println("playing clip");
+    //println("playing clip");
     //drip.stop(); // stop previous playing, it might be still playing
     //drip.cue(0); // restart at beginning
     //drip.play(); // play new clip
@@ -352,23 +355,32 @@ void draw() {
 
   //question icon
   image(img61, 1746, 906);
+
+  if (drawThePopup) {
+    fill(#91d8f2);
+    noStroke();
+    rect(494, 135, 934, 816);
+
+    image (img62, 1385, 152);
+
+    font=createFont("OpenSans-Regular.ttf", 33);
+    textFont (font);
+    fill(#414042);
+    text("WRITE A WAY YOU CAN CONSERVE WATER", 625, 240);
+  }
 }
 
-void mousePressed() { 
-  fill(#91d8f2);
-  noStroke();
-  rect(494, 135, 934, 816);
+void mousePressed() {
+  // enable popup
+  if (mouseX > 1746 && mouseX < 1860 && mouseY > 906 && mouseY < 1020) {
+    drawThePopup = true;
+  }
 
-  PImage img62=loadImage ("close.png");
-  image (img62, 1385, 152);
-
-  font=createFont("OpenSans-Regular.ttf", 33);
-  textFont (font);
-  fill(#414042);
-  text("WRITE A WAY YOU CAN CONSERVE WATER", 625, 240);
+  // hide popup
+  //if (…) {
+  //drawThePopup = false;
+  //}
 }
-
-
 
 
 

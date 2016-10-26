@@ -6,7 +6,12 @@ int oldS = -1, s, m = 0;
 PImage img1, img2, img3; // water
 PImage img60, img61; // other images
 boolean drawThePopup = false;
-PImage img62;
+boolean drawThePopup2 = false;
+boolean drawThePopup3 = false;
+PImage img62, img63, img64, img65;
+
+
+
 
 void setup() {
   size(1920, 1080);
@@ -20,7 +25,14 @@ void setup() {
 
   img60= loadImage ("60.jpg"); // background
   img61= loadImage ("question.png"); // question
-  img62=loadImage ("close.png");
+  img62= loadImage ("close.png");
+  img63= loadImage ("message-1.png"); 
+  img64= loadImage ("message-2.png");
+  img65=loadImage ("message-3.png");
+  
+  
+  
+      
 }
 
 
@@ -44,9 +56,10 @@ void draw() {
   m = minute();  //defining a minute
 
 
-  // draw background
-  image(img60, 0, 0);
-
+  if (!drawThePopup) {
+    // draw background
+    image(img60, 0, 0);
+  }
 
   ///mapping images to seconds
   if (s == 1) { 
@@ -353,36 +366,94 @@ void draw() {
 
 
 
-  //question icon
-  image(img61, 1746, 906);
+  //icons
+  fill (#FAF372);
+  noStroke();
+  ellipse (1660, 1006, 80, 80);
+  
+  fill (#FA230F);
+  noStroke();
+  ellipse (1760, 1006, 80, 80);
+  
+  fill (#4AAF20);
+  noStroke();
+  ellipse (1860, 1006, 80, 80);
+  
+
+  
+  
+  
+  
+  
 
   if (drawThePopup) {
     fill(#91d8f2);
     noStroke();
-    rect(494, 135, 934, 816);
-
+     rect(494, 135, 934, 816);
     image (img62, 1385, 152);
-
-    font=createFont("OpenSans-Regular.ttf", 33);
-    textFont (font);
+    image (img63, 356, 30);
     fill(#414042);
-    text("WRITE A WAY YOU CAN CONSERVE WATER", 625, 240);
+ 
   }
+
+
+ if (drawThePopup2) {
+    fill(#91d8f2);
+    noStroke();
+    rect(494, 135, 934, 816);
+    image (img62, 1385, 152);
+    image (img64, 368, 0);
+    fill(#414042);
+ 
+  }
+  
+   if (drawThePopup3) {
+    fill(#91d8f2);
+    noStroke();
+    rect(394, 135, 1134, 716);
+    image (img62, 1485, 152);
+    image (img65, 360, 170);
+    fill(#414042);
+ 
+  }
+  
 }
 
+
+
+
+
+  
 void mousePressed() {
   // enable popup
-  if (mouseX > 1746 && mouseX < 1860 && mouseY > 906 && mouseY < 1020) {
+  if (mouseX > 1620 && mouseX < 1700 && mouseY > 966 && mouseY < 1046) {
     drawThePopup = true;
   }
+    
+  if (mouseX > 1720 && mouseX < 1800 && mouseY > 966 && mouseY < 1046) {
+     fill (#000000);
+      drawThePopup2 = true;
+  }
+  
+    if (mouseX > 1820 && mouseX < 1900 && mouseY > 966 && mouseY < 1046) {
+     fill (#000000);
+      drawThePopup3 = true;
+  }
+  
+  
+  //close pop up
+  
+  if(mouseX > 1385 && mouseX < 1411 && mouseY > 152 && mouseY < 177) {
+  drawThePopup = false; 
+  drawThePopup2 = false;
+  }
 
-  // hide popup
-  //if (…) {
-  //drawThePopup = false;
-  //}
+  if(mouseX > 1485 && mouseX < 1511 && mouseY > 152 && mouseY < 177) {
+
+   drawThePopup3 = false;
+  }
+  
 }
-
-
 
 
 
